@@ -8,10 +8,67 @@
         {% endblock %}
 
         {% block javascripts %}
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
     </head>
     <body>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">HP</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Accueil</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="{{path('app_professeur_index')}}">Professeur</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="{{path('app_eleve_index')}}">Eleve</a>
+                </li>
+                <li class="nav-item dropdown">
+                <a class="nav-link  dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">Sortilege</a>
+                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                    {% for sortilege in sortileges %}
+                        <li><a class="dropdown-item" href="#">{{sortilege.nom}}</a></li>
+                    {% endfor %}
+                </ul>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link " href="{{path('app_cours_index')}}">Cours</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link " href="{{path('app_maison_index')}}">Maison</a>
+                </li>
+                {% if not(app.user) %}
+                <li class="nav-item">
+                <a class="nav-link " href="{{path('app_register')}}">S'inscrire</a>
+                </li>
+                {% endif %}
+                {% if  not(app.user) %}
+                <li class="nav-item">
+                <a class="nav-link " href="{{path('app_login')}}">Se connecter</a>
+                </li>
+                {% endif %}
+                {% if app.user %}
+                <li class="nav-item">
+                <a class="nav-link " href="{{path('app_logout')}}">Se déconnecter</a>
+                </li>
+                {% endif %}
+            </ul>
+            </div>
+        </div>
+        </nav>
         {% block body %}{% endblock %}
+            {% for message in app.flashes('notice') %}
+                <div class="flash-notice">
+                    {{ message }}
+                </div>
+            {% endfor %}
     </body>
 </html>

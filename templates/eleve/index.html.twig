@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Eleve index{% endblock %}
+
+{% block body %}
+    <h1>Eleve index</h1>
+    {% for message in app.flashes('success') %}
+         <div class="flash-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Maison</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for eleve in eleves %}
+            <tr>
+                <td>{{ eleve.id }}</td>
+                <td>{{ eleve.nom }}</td>
+                <td>{{ eleve.prenom }}</td>
+                <td>{{ eleve.maison }}</td>
+                <td>
+                    <a href="{{ path('app_eleve_show', {'id': eleve.id}) }}">show</a>
+                    <a href="{{ path('app_eleve_edit', {'id': eleve.id}) }}">edit</a>
+                    {% if not eleve.maison %}
+                        <a href="{{ path('app_eleve_selection', {'id': eleve.id}) }}">selection</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_eleve_new') }}">Create new</a>
+{% endblock %}

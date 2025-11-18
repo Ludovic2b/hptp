@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Sorcier{% endblock %}
+
+{% block body %}
+    <h1>Create new Sorcier</h1>
+
+    {{ include('sorcier/_form.html.twig') }}
+
+    <a href="{{ path('app_sorcier_index') }}">back to list</a>
+{% endblock %}

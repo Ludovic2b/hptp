@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Maison{% endblock %}
+
+{% block body %}
+    <h1>Maison</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ maison.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ maison.nom }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3> Eleves </h3>
+    <ul>
+    {% for eleve in maison.eleves %}
+    <li>{{eleve.prenom}} {{eleve.nom}}</li>
+    {% endfor %}
+    </ul>
+
+    <h3>Directeur : {{maison.professeur.prenom}} {{maison.professeur.nom}}</h3>
+
+    <p> Nombre de points : <b>{{points}}</b></p>
+    <a href="{{ path('app_maison_index') }}">back to list</a>
+
+    <a href="{{ path('app_maison_edit', {'id': maison.id}) }}">edit</a>
+
+    {{ include('maison/_delete_form.html.twig') }}
+{% endblock %}

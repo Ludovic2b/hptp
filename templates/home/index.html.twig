@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Bienvenue à Poudlard ! </h1>
+
+    <table class="table table-striped">
+    <thead><th>Nombre d'élèves</th><th>Nombre de professeurs</th></thead>
+    <tr>
+        <td>{{nb_eleves}}</td>
+        <td>{{nb_profs}}</td>
+    </tr>
+    </table>
+
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Maison</th>
+      <th scope="col">Points</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% set i=0 %}
+  {% for maison in maisons %}
+
+    {% set i = i+1 %}
+    <tr>
+      <th scope="row">{{i}}</th>
+      <td>{{maison.nom}}</td>
+      <td>{{maison.totalPoints}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}

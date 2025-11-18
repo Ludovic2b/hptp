@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sortilege index{% endblock %}
+
+{% block body %}
+    <h1>Sortilege index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>NbApprenant</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sortilege in sortileges %}
+            <tr>
+                <td>{{ sortilege.id }}</td>
+                <td>{{ sortilege.nom }}</td>
+                 <td>{{ sortilege.nbApprenant }}</td>
+                <td>
+                    <a href="{{ path('app_sortilege_show', {'id': sortilege.id}) }}">show</a>
+                    <a href="{{ path('app_sortilege_edit', {'id': sortilege.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_sortilege_new') }}">Create new</a>
+{% endblock %}
