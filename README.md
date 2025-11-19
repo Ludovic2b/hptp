@@ -43,7 +43,7 @@ Le projet suit l'architecture classique **MVC (Modèle-Vue-Contrôleur)**, enric
 
 ---
 
-## 🛠️ Le point de départ (Développer son projet en 22 minutes)
+## 🛠️ Le point de départ pour développer son projet en 22 minutes (un Corte - Furiani, dans le stade)
 
 ### Prérequis
 
