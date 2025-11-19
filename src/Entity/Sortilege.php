@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\SortilegeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SortilegeRepository::class)]
@@ -26,6 +27,12 @@ class Sortilege
 
     #[ORM\Column]
     private ?bool $archive = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $externalId = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $description = null;
 
     public function __construct()
     {
@@ -81,6 +88,30 @@ class Sortilege
     public function setArchive(bool $archive): static
     {
         $this->archive = $archive;
+
+        return $this;
+    }
+
+    public function getExternalId(): ?string
+    {
+        return $this->externalId;
+    }
+
+    public function setExternalId(?string $externalId): static
+    {
+        $this->externalId = $externalId;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
 
         return $this;
     }

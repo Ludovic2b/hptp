@@ -26,13 +26,13 @@
                 <a class="nav-link active" aria-current="page" href="/">Accueil</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="{{path('app_professeur_index')}}">Professeur</a>
+                <a class="nav-link" href="{{path('app_professeur_index')}}">Professeurs</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="{{path('app_eleve_index')}}">Eleve</a>
+                <a class="nav-link" href="{{path('app_eleve_index')}}">Eleves</a>
                 </li>
                 <li class="nav-item dropdown">
-                <a class="nav-link  dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">Sortilege</a>
+                <a class="nav-link  dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">Sortileges</a>
                  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                     {% for sortilege in sortileges %}
                         <li><a class="dropdown-item" href="#">{{sortilege.nom}}</a></li>
@@ -43,7 +43,18 @@
                 <a class="nav-link " href="{{path('app_cours_index')}}">Cours</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link " href="{{path('app_maison_index')}}">Maison</a>
+                <a class="nav-link " href="{{path('app_maison_index')}}">Maisons</a>
+                </li>
+                {# <li class="nav-item">
+                <a class="nav-link " href="{{path('app_personnage')}}">Personnages</a>
+                </li> #}
+                <li class="nav-item dropdown">
+                <a class="nav-link  dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">Personnages</a>
+                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                    {% for personnage in personnages %}
+                        <li><a class="dropdown-item" href="#">{{personnage.name}}</a></li>
+                    {% endfor %}
+                </ul>
                 </li>
                 {% if not(app.user) %}
                 <li class="nav-item">
